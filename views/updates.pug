@@ -1,0 +1,59 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap')
+    link(rel='stylesheet', href='/css/style.css')
+
+  body
+    .page-wrapper
+      header.site-header
+        .header-inner
+          .brand
+            span.brand-icon 🌿
+            h1 Plant Collection
+          a.nav-link(href='/') ← Return to the homepage
+
+      main
+        .form-container
+          .form-header
+            h2 Add a New Plant
+            p Fill in the details below to add a new record to your HubSpot custom object.
+
+          form.record-form(action='/update-cobj', method='POST')
+            .form-group
+              label(for='name') Name
+              input#name(
+                type='text'
+                name='name'
+                placeholder='e.g. Monstera Deliciosa'
+                required
+              )
+
+            .form-group
+              label(for='species') Species
+              input#species(
+                type='text'
+                name='species'
+                placeholder='e.g. Monstera'
+                required
+              )
+
+            .form-group
+              label(for='care_level') Care Level
+              select#care_level(name='care_level' required)
+                option(value='' disabled selected) Select care level…
+                option(value='Easy') Easy
+                option(value='Moderate') Moderate
+                option(value='Difficult') Difficult
+
+            .form-actions
+              button.btn-primary(type='submit') Save Plant
+              a.btn-ghost(href='/') Cancel
+
+      footer.site-footer
+        p HubSpot Integrating I Practicum &mdash; Sourabh Saini

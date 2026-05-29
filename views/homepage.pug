@@ -1,0 +1,49 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap')
+    link(rel='stylesheet', href='/css/style.css')
+
+  body
+    .page-wrapper
+      header.site-header
+        .header-inner
+          .brand
+            span.brand-icon 🌿
+            h1 Plant Collection
+          a.btn-primary(href='/update-cobj') + Add to this table
+
+      main
+        if records && records.length > 0
+          .table-wrapper
+            table.records-table
+              thead
+                tr
+                  th Name
+                  th Species
+                  th Care Level
+                  th Record ID
+              tbody
+                each record in records
+                  tr
+                    td.name-cell= record.properties.name || '—'
+                    td= record.properties.species || '—'
+                    td
+                      if record.properties.care_level
+                        span(class='badge badge-' + record.properties.care_level.toLowerCase().replace(' ', '-'))= record.properties.care_level
+                      else
+                        span —
+                    td.id-cell= record.id
+        else
+          .empty-state
+            span.empty-icon 🌱
+            p No plants yet.
+            a.btn-secondary(href='/update-cobj') Add your first record
+
+      footer.site-footer
+        p HubSpot Integrating I Practicum &mdash; Sourabh Saini
